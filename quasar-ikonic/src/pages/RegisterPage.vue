@@ -1,19 +1,19 @@
 <template>
     <q-page-container>
-        <q-page class="flex-center">
-            <div class="q-pa-lg">
-                Register Page
-                <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md q-px-lg">
-                    <q-input filled v-model="formData.email" label="Your Email *" lazy-rules
+        <q-page class="flex-center row">
+            <div class="q-pa-sm col-md-6">
+                <q-form @submit="addUser" class="q-gutter-md q-px-lg">
+                    <q-input filled v-model="formData.name" label="Your Name *" lazy-rules
+                        :rules="[val => val && val.length > 0 || 'Please type name']" />
+
+                    <q-input type="email" filled v-model="formData.email" label="Your Email *" lazy-rules
                         :rules="[val => val && val.length > 0 || 'Please type email']" />
 
-                    <q-input filled v-model="formData.password" type="text" label="Your Password *" lazy-rules :rules="[
-                        val => val !== null && val !== '' || 'Please type your password',
-                        val => val > 0 && val < 100 || 'Please type a real age'
-                    ]" />
+                    <q-input filled v-model="formData.password" type="password" label="Your Password *" lazy-rules
+                        :rules="[val => val !== null && val !== '' || 'Please type your password']" />
                     <div>
-                        <q-btn label="Submit" type="submit" color="primary" />
-                        <q-btn label="Register" to="/register" color="primary" flat class="q-ml-sm" />
+                        <q-btn label="Register" type="submit" color="primary" />
+                        <q-btn label="Login" @click="$router.push('/')" color="primary" flat class="q-ml-sm" />
                     </div>
                 </q-form>
 
@@ -23,15 +23,26 @@
 </template>
 
 <script>
+import { useAuthStore } from 'src/stores/example-store';
+var store = useAuthStore();
 export default {
     name: 'RegisterPage',
     data() {
         return {
             formData: {
+                name: '',
                 email: '',
                 password: ''
             }
         }
+    },
+    methods: {
+        async addUser(e) {
+            e.preventDefault();
+            let res = await store.register(this.formData)
+        }
+
+
     },
 }
 </script>
