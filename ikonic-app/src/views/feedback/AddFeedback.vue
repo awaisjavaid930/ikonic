@@ -49,7 +49,6 @@ export default {
     methods: {
         async addProduct() {
             const res = await store.apiRequest('feedback', 'post', this.formData)
-            console.log(res)
             this.message = res.data.message
             this.$router.push('/product/'+this.formData.product_id +'/feedback');
         }
