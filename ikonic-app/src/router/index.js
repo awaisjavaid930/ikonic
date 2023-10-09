@@ -37,6 +37,14 @@ const routes = [
         path: "/product/:id",
         component: import("../views/product/ProductDetail.vue"),
       },
+      {
+        path: "/product/:product_id/feedback",
+        component: import("../views/feedback/FeedbackList.vue"),
+      },
+      {
+        path: "/feedback/add/:product_id",
+        component: import("../views/feedback/AddFeedback.vue"),
+      },
     ],
   },
 ];

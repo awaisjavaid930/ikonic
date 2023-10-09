@@ -1,10 +1,9 @@
 <template>
     <div class="container mt-4">
         <h3>
-            All Product
+            All Feedback
         </h3>
-        <router-link class="btn btn-primary my-2" to="/product/add">Product</router-link>
-
+        <router-link class="btn btn-primary my-2" :to="'/feedback/add/'+ $route.params.product_id">Product</router-link>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -13,13 +12,12 @@
                     <th scope="col">Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr v-for="(product_list, index) in product_lists" :key="product_list">
+            <tbody >
+                <tr v-for="(feedback_list, index) in feedback_lists" :key="feedback_list">
                     <th scope="row">{{ index + 1 }}</th>
-                    <td> {{ product_list.title }}</td>
+                    <td> {{ feedback_list.title }}</td>
                     <td>
-                        <router-link class="btn btn-primary" :to="'/product/' + product_list.id">Edit</router-link>
-                        <router-link class="btn btn-primary mx-1" :to="'/product/' + product_list.id+'/feedback'">Feedback</router-link>
+                        <router-link class="btn btn-primary" :to="'/product/' + feedback_list.id">Edit</router-link>
                     </td>
                 </tr>
             </tbody>
@@ -33,13 +31,16 @@ export default {
     name: 'ProductList',
     data() {
         return {
-            product_lists: [],
+            feedback_lists: [],
         }
     },
     methods: {
         async getItems() {
-            const res = await store.apiRequest('product', 'get')
-            this.product_lists = res.data.data;
+            const res = await store.apiRequest("feedback/" + this.$route.params.product_id+'/detail', "get")
+            if (res.status == 200) {
+                
+                this.feedback_lists = res.data.data;
+            }
         }
     },
     mounted() {

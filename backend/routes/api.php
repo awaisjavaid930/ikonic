@@ -31,6 +31,7 @@ use App\Http\Controllers\{
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/logout', [UserController::class, 'logout']);
         Route::resource('/product', ProductController::class);
+        Route::get('/feedback/{product}/detail', [FeedbackController::class, 'index']);
         Route::resource('/feedback', FeedbackController::class);
         
     });

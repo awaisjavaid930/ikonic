@@ -11,16 +11,17 @@ use Auth;
 class FeedbackController extends Controller
 {
 
-    public function index()
+    public function index($productId)
     {
-        $feedback = Feedback::get();   
+        $feedback = Feedback::where('product_id',$productId)->get();   
         return response()->json(['status' => 200 , 'data' => FeedbackResource::collection($feedback) , 'message' => 'record retrived!']);
     }
     
     public function store(StoreFeedbackRequest $request)
     {
-        $user = Auth::user();
-        $user->feedback()->create($request->validated());
+        $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
+        Feedback::create($validated);
         return response()->json(['status' => 200 , 'message' => 'record saved!']);
         
     }

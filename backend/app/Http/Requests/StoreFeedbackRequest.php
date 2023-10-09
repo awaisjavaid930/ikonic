@@ -27,6 +27,8 @@ class StoreFeedbackRequest extends FormRequest
             'title' => 'required',
             'category' => 'required',
             'description' => 'required',
+            'user_id' => 'nullable',
+            'product_id' => 'nullable',
         ];
     }
 }
