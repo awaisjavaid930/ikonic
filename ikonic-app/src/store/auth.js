@@ -56,7 +56,27 @@ export const useAuthStore = defineStore("authStore", {
         })
         .catch((err) => {
           console.log(err);
-          return err ;
+          return err;
+        });
+    },
+    async apiRequest(url ,method ,data) {
+      return await axios(
+        {
+          method: method,
+          url: "http://127.0.0.1:8000/api/" + url,
+          data: data,
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          },
+        },
+      )
+        .then((res) => {
+          Promise.resolve();
+          return res;
+        })
+        .catch((err) => {
+          console.log(err);
+          return err;
         });
     },
   },

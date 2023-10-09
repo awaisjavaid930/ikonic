@@ -25,8 +25,18 @@ const routes = [
         path: "/dashboard",
         component: import("../views/dashboard/DashboardPage.vue"),
       },
-
-      // ...other sub routes
+      {
+        path: "/product",
+        component: import("../views/product/ProductList.vue"),
+      },
+      {
+        path: "/product/add",
+        component: import("../views/product/ProductAdd.vue"),
+      },
+      {
+        path: "/product/:id",
+        component: import("../views/product/ProductDetail.vue"),
+      },
     ],
   },
 ];

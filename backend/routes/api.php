@@ -30,7 +30,7 @@ use App\Http\Controllers\{
 
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/logout', [UserController::class, 'logout']);
-        Route::resource('/feedback', FeedbackController::class);
         Route::resource('/product', ProductController::class);
+        Route::resource('/feedback', FeedbackController::class);
         
     });
