@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     FeedbackController,
     UserController,
-    ProductController
+    ProductController,
+    PermissionController
 };
 
 /*
@@ -33,5 +34,8 @@ use App\Http\Controllers\{
         Route::resource('/product', ProductController::class);
         Route::get('/feedback/{product}/detail', [FeedbackController::class, 'index']);
         Route::resource('/feedback', FeedbackController::class);
+        Route::get('/roles', [PermissionController::class, 'index']);
+        Route::get('/roles/{roleId}', [PermissionController::class, 'getRolePermission']);
+        Route::post('/assign/permssion', [PermissionController::class, 'assignPermssion']);
         
     });

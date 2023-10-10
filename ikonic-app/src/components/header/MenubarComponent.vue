@@ -12,7 +12,7 @@
               <router-link class="nav-link" to="/product">Product</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+              <router-link class="nav-link" to="/permission">Role & Permission</router-link>
           </li>
         </ul>
         <button @click="logout" class="btn btn-outline-success" type="submit">Logout</button>

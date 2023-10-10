@@ -9,16 +9,16 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Product Title</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody >
                 <tr v-for="(feedback_list, index) in feedback_lists" :key="feedback_list">
                     <th scope="row">{{ index + 1 }}</th>
                     <td> {{ feedback_list.title }}</td>
-                    <td>
-                        <router-link class="btn btn-primary" :to="'/product/' + feedback_list.id">Edit</router-link>
-                    </td>
+                    <td> {{ feedback_list.category }}</td>
+                    <td> {{ feedback_list.description }}</td>
                 </tr>
             </tbody>
         </table>

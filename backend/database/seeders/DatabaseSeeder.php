@@ -15,11 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory()->create([
-            'name'      => 'Super Admin',
-            'email'     => 'admin@admin.com',
-            'password'  => Hash::make('password'),
-            'is_admin'   => 1
-        ]);
+        // \App\Models\User::factory()->create([
+        //     'name'      => 'Super Admin',
+        //     'email'     => 'admin@admin.com',
+        //     'password'  => Hash::make('password'),
+        //     'is_admin'   => 1
+        // ]);
+        
+        $this->call(PermissionSeeder::class);
+        
+        
     }
 }

@@ -45,6 +45,14 @@ const routes = [
         path: "/feedback/add/:product_id",
         component: import("../views/feedback/AddFeedback.vue"),
       },
+      {
+        path: "/permission",
+        component: import("../views/permission/RoleList.vue"),
+      },
+      {
+        path: "/role/:id",
+        component: import("../views/permission/RoleDetailPage.vue"),
+      },
     ],
   },
 ];

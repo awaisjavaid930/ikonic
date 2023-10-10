@@ -17,7 +17,8 @@ class UserController extends Controller
     {
        $validated = $request->validated();
        $validated['password'] = Hash::make($validated['password']);
-        User::create($validated);
+        $user = User::create($validated);
+        $user->assignRole('user');
         return response()->json(['status' => 200 , 'message' => 'record saved']);
     }
     
